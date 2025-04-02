@@ -7,7 +7,7 @@ import org.pinzo.vehicles.Truck;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Tang Parking Lot");
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = ParkingLot.getInstance();
         Car car = new Car("ABCD");
         Truck truck = new Truck("EFGH");
         Bike bike = new Bike("IKLM");

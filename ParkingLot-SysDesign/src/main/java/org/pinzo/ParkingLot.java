@@ -7,13 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingLot {
-    private List<Level> levels;
+    private static ParkingLot instance;
+    private final List<Level> levels;
 
     public ParkingLot() {
         this.levels = new ArrayList<>();
         for (int i=0; i<3; i++) {
             this.levels.add(new Level());
         }
+    }
+
+    public static synchronized ParkingLot getInstance() {
+        if (instance == null) {
+            instance = new ParkingLot();
+        }
+        return instance;
     }
 
     public synchronized boolean hasEmptySpots(VehicleType type) {
