@@ -1,5 +1,6 @@
 package org.pinzo;
 
+import org.pinzo.vehicles.Vehicle;
 import org.pinzo.vehicles.VehicleType;
 
 import java.util.ArrayList;
@@ -19,6 +20,26 @@ public class Level {
             this.bike_spots.add(new Spot(VehicleType.BIKE));
             this.truck_spots.add(new Spot(VehicleType.TRUCK));
         }
+    }
+
+    public boolean park(Vehicle vehicle) {
+        for (Spot spot : this.getSpotsBasedOnType(vehicle.getType())) {
+            if (spot.isAvailable()) {
+                spot.park(vehicle);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean returnVehicle(Vehicle vehicle) {
+        for (Spot spot : this.getSpotsBasedOnType(vehicle.getType())) {
+            if (spot.getPlateNumber().equals(vehicle.getPlateNumber())) {
+                spot.returnVehicle(vehicle);
+                return true;
+            }
+        }
+        return false;
     }
 
     public  List<Spot> getSpotsBasedOnType(VehicleType type) {

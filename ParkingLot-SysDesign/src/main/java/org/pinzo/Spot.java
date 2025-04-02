@@ -1,5 +1,6 @@
 package org.pinzo;
 
+import org.pinzo.vehicles.Vehicle;
 import org.pinzo.vehicles.VehicleType;
 
 public class Spot {
@@ -10,6 +11,24 @@ public class Spot {
     public Spot(VehicleType type) {
         this.available = true;
         this.type = type;
+    }
+
+    public boolean park(Vehicle vehicle) {
+        if (isAvailable() && this.getType() == vehicle.getType()) {
+            this.setPlateNumber(vehicle.getPlateNumber());
+            return true;
+        } else {
+            throw new IllegalArgumentException("Invalid");
+        }
+    }
+
+    public boolean returnVehicle(Vehicle vehicle) {
+        if (!isAvailable() && this.getPlateNumber().equals(vehicle.getPlateNumber())) {
+            this.setAvailable(true);
+            this.setPlateNumber("");
+            return true;
+        }
+        return false;
     }
 
     public String getPlateNumber() {

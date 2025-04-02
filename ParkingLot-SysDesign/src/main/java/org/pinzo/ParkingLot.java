@@ -29,12 +29,8 @@ public class ParkingLot {
 
     public boolean park(Vehicle vehicle) {
         for (Level level : levels) {
-            for (Spot spot : level.getSpotsBasedOnType(vehicle.getType())) {
-                if (spot.isAvailable()) {
-                    spot.setAvailable(false);
-                    spot.setPlateNumber(vehicle.getPlateNumber());
-                    return true;
-                }
+            if (level.park(vehicle)) {
+                return true;
             }
         }
         return false;
@@ -42,12 +38,8 @@ public class ParkingLot {
 
     public boolean returnVehicle(Vehicle vehicle) {
         for (Level level : levels) {
-            for (Spot spot : level.getSpotsBasedOnType(vehicle.getType())) {
-                if (vehicle.getPlateNumber().equals(spot.getPlateNumber())) {
-                    spot.setAvailable(true);
-                    spot.setPlateNumber("");
-                    return true;
-                }
+            if (level.returnVehicle(vehicle)){
+                return true;
             }
         }
         return false;
