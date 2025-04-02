@@ -22,7 +22,7 @@ public class Level {
         }
     }
 
-    public boolean park(Vehicle vehicle) {
+    public synchronized boolean park(Vehicle vehicle) {
         for (Spot spot : this.getSpotsBasedOnType(vehicle.getType())) {
             if (spot.isAvailable()) {
                 spot.park(vehicle);
@@ -32,7 +32,7 @@ public class Level {
         return false;
     }
 
-    public boolean returnVehicle(Vehicle vehicle) {
+    public synchronized boolean returnVehicle(Vehicle vehicle) {
         for (Spot spot : this.getSpotsBasedOnType(vehicle.getType())) {
             if (spot.getPlateNumber().equals(vehicle.getPlateNumber())) {
                 spot.returnVehicle(vehicle);

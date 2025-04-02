@@ -16,7 +16,7 @@ public class ParkingLot {
         }
     }
 
-    public boolean hasEmptySpots(VehicleType type) {
+    public synchronized boolean hasEmptySpots(VehicleType type) {
         for (Level level : levels) {
             for (Spot spot : level.getSpotsBasedOnType(type)) {
                 if (spot.isAvailable()) {
@@ -27,7 +27,7 @@ public class ParkingLot {
         return false;
     }
 
-    public boolean park(Vehicle vehicle) {
+    public synchronized boolean park(Vehicle vehicle) {
         for (Level level : levels) {
             if (level.park(vehicle)) {
                 return true;
@@ -36,7 +36,7 @@ public class ParkingLot {
         return false;
     }
 
-    public boolean returnVehicle(Vehicle vehicle) {
+    public synchronized boolean returnVehicle(Vehicle vehicle) {
         for (Level level : levels) {
             if (level.returnVehicle(vehicle)){
                 return true;

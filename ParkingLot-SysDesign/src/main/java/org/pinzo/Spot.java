@@ -11,18 +11,20 @@ public class Spot {
     public Spot(VehicleType type) {
         this.available = true;
         this.type = type;
+        this.plateNumber="";
     }
 
-    public boolean park(Vehicle vehicle) {
+    public synchronized boolean park(Vehicle vehicle) {
         if (isAvailable() && this.getType() == vehicle.getType()) {
             this.setPlateNumber(vehicle.getPlateNumber());
+            this.setAvailable(false);
             return true;
         } else {
             throw new IllegalArgumentException("Invalid");
         }
     }
 
-    public boolean returnVehicle(Vehicle vehicle) {
+    public synchronized boolean returnVehicle(Vehicle vehicle) {
         if (!isAvailable() && this.getPlateNumber().equals(vehicle.getPlateNumber())) {
             this.setAvailable(true);
             this.setPlateNumber("");
