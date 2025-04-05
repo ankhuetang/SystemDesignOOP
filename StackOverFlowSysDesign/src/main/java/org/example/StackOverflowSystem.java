@@ -20,8 +20,10 @@ public class StackOverflowSystem {
         this.users = new HashMap<>();
     }
 
-    public void createUserAccount(User user) {
+    public User createUserAccount(String name) {
+        User user = new User(name);
         users.put(user.getUser_id(), user);
+        return user;
     }
 
     public double calculateUserReputation(User user) {
@@ -54,19 +56,19 @@ public class StackOverflowSystem {
                 .collect(Collectors.toList());
     }
 
-    public void upvoteQuestion(Question question, int voter_id) {
+    public void upvoteQuestion(Question question, User voter) {
         question.upVote();
     }
 
-    public void downvoteQuestion(Question question, int voter_id) {
+    public void downvoteQuestion(Question question, User voter) {
         question.downVote();
     }
 
-    public void upvoteAnswer(Answer answer, int voter_id) {
+    public void upvoteAnswer(Answer answer, User voter) {
         answer.upVote();
     }
 
-    public void downvoteAnswer(Answer answer, int voter_id) {
+    public void downvoteAnswer(Answer answer, User voter) {
         answer.downVote();
     }
 
@@ -78,13 +80,13 @@ public class StackOverflowSystem {
     }
 
     public void postCommentToQuestion(Question question, User commenter, String content) {
-        Comment newComment = new Comment(question.getQuestion_id(), commenter.getUser_id(), content);
+        Comment newComment = new Comment(question.getQuestion_id(), commenter, content);
         question.addComment(newComment);
         commenter.addComment(newComment);
     }
 
-    public void postCommentToAnswer(Answer answer, int commenter_id, String content) {
-        answer.addComment(content, commenter_id);
+    public void postCommentToAnswer(Answer answer, User commenter, String content) {
+        answer.addComment(content, commenter);
     }
 
     public Answer postAnswer(Question question, User answerer, String content) {

@@ -6,10 +6,10 @@ public class Comment {
     private int user_id;
     private String content;
 
-    public Comment(int question_id, int user_id, String content) {
+    public Comment(int question_id, User user, String content) {
         this.comment_id = generateId();
         this.question_id = question_id;
-        this.user_id = user_id;
+        this.user_id = user.getUser_id();
         this.content = content;
     }
 

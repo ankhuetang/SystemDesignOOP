@@ -20,8 +20,8 @@ public class Answer {
         this.comments = new ArrayList<>();
     }
 
-    public void addComment(String content, int commenter_id) {
-        Comment newComment = new Comment(this.answer_id, commenter_id, content);
+    public void addComment(String content, User commenter) {
+        Comment newComment = new Comment(this.answer_id, commenter, content);
         this.comments.add(newComment);
     }
 
