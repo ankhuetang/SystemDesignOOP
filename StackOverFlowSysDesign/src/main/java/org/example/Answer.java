@@ -20,16 +20,16 @@ public class Answer {
         this.comments = new ArrayList<>();
     }
 
-    public void addComment(String content, User commenter) {
+    public synchronized void addComment(String content, User commenter) {
         Comment newComment = new Comment(this.answer_id, commenter, content);
         this.comments.add(newComment);
     }
 
-    public void upVote() {
+    public synchronized void upVote() {
         this.votes += 1;
     }
 
-    public void downVote() {
+    public synchronized void downVote() {
         this.votes -= 1;
     }
 

@@ -21,7 +21,7 @@ public class User {
         this.reputation = 0;
     }
 
-    public double calculateUserReputation() {
+    public synchronized double calculateUserReputation() {
         //( num_questions + num_answer*2 + num_votes*3) / 5
         int numQuestions = this.getQuestions().size();
         int questionVotes = this.getQuestions().stream().mapToInt(Question::getVotes).sum();
@@ -91,7 +91,7 @@ public class User {
         return reputation;
     }
 
-    public void setReputation(double reputation) {
+    public synchronized void setReputation(double reputation) {
         this.reputation = reputation;
     }
 

@@ -23,11 +23,11 @@ public class Question {
         this.comments = new ArrayList<>();
     }
 
-    public void upVote() {
+    public synchronized void upVote() {
         this.votes += 1;
     }
 
-    public void downVote() {
+    public synchronized void downVote() {
         this.votes -= 1;
     }
 
@@ -35,11 +35,11 @@ public class Question {
         this.tags.addAll(Arrays.asList(tags));
     }
 
-    public void addComment(Comment comment) {
+    public synchronized void addComment(Comment comment) {
         this.comments.add(comment);
     }
 
-    public Answer addAnswer(Answer answer) {
+    public synchronized Answer addAnswer(Answer answer) {
         this.answers.add(answer);
         return answer;
     }
