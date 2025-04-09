@@ -1,15 +1,23 @@
 package org.example;
 
 public class VendingMachine {
+    private static VendingMachine instance;
     private Inventory inventory;
     private VendingMachineState currentState;
     private Product selectedProduct;
 
     private int totalInsertedCash;
 
-    public VendingMachine(Inventory inventory) {
-        this.inventory = inventory;
+    public VendingMachine() {
+        this.inventory = new Inventory();
         this.currentState = new IdleState(this);
+    }
+
+    public static VendingMachine getInstance() {
+        if (instance == null) {
+            instance = new VendingMachine();
+        }
+        return instance;
     }
 
     public void selectProduct(Product product) {

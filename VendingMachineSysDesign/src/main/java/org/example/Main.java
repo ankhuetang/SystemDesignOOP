@@ -4,10 +4,10 @@ public class Main {
     public static void main(String[] args) {
         Product coca = new Product(150, "Coca-cola");
         Product snack = new Product(370, "Cheetos");
-        Inventory inventory = new Inventory();
-        inventory.restockProduct(coca, 10);
-        inventory.restockProduct(snack, 5);
-        VendingMachine vendingMachine = new VendingMachine(inventory);
+
+        VendingMachine vendingMachine = VendingMachine.getInstance();
+        vendingMachine.getInventory().restockProduct(coca, 10);
+        vendingMachine.getInventory().restockProduct(snack, 5);
 
         // Customer select coca
         vendingMachine.selectProduct(coca);
